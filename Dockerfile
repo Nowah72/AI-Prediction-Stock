@@ -17,14 +17,12 @@ RUN wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz && \
 # Set the working directory
 WORKDIR /app
 
-# Copy the requirements.txt file
-COPY requirements.txt /app/
+# Copy the requirements file and application code
+COPY app/requirements.txt .
+COPY app/ .
 
 # Install Python dependencies
-RUN pip install -r prod.txt
-
-# Copy the rest of the application code
-COPY src/ .
+RUN pip install -r requirements.txt
 
 # Specify the entry point for your application
 CMD ["python", "tradebot.py"]
