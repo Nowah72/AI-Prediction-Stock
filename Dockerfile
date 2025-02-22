@@ -2,7 +2,7 @@ FROM python:3.9
 
 # Install system-level dependencies
 RUN apt-get update && \
-    apt-get install -y build-essential wget libssl-dev
+    apt-get install -y build-essential wget
 
 # Download and install ta-lib
 RUN wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz && \
@@ -22,7 +22,7 @@ COPY app/requirements.txt .
 COPY app/ .
 
 # Install Python dependencies
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Specify the entry point for your application
 CMD ["python", "tradebot.py"]
