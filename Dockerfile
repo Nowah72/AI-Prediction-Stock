@@ -3,21 +3,22 @@ FROM python:3.9
 # Install system dependencies
 RUN apt-get update && \
     apt-get install -y build-essential wget curl && \
-    apt-get install -y libta-lib-dev && \
+    apt-get install -y gcc make python3-dev && \
     apt-get clean
 
-# Set the working directory
-WORKDIR /app
-
-# Copy the requirements file and application code
-COPY app/requirements.txt .  
-COPY app/ .  
-
-# Upgrade pip before installing packages
-RUN pip install --upgrade pip
+# Install TA-Lib from source
+RUN wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz && \
+    tar -xzf ta-lib-0.4.0-src.tar.gz && \
+    cd ta-lib && \
+    ./configure --prefix=/usr && \
+    make && make install && \
+    cd .. && rm -rf ta-lib ta-lib-0.4.0-src.tar.gz
 
 # Install Python dependencies
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Specify the entry point for your application
-CMD ["python", "tradebot.py"]
+# Copy project files
+COPY . .
+
+CMD ["python", "app.py"]  # Replace with your main script
