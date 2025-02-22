@@ -2,7 +2,6 @@ dash
 plotly
 pandas
 yfinance
-TA-Lib
 numpy
 statsmodels
 pmdarima
