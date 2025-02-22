@@ -18,7 +18,7 @@ RUN wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz && \
 WORKDIR /app
 
 # Copy the requirements.txt file
-COPY requirements/prod.txt .
+COPY requirements.txt
 
 # Install Python dependencies
 RUN pip install -r prod.txt
