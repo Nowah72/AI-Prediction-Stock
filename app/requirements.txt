@@ -2,7 +2,7 @@ dash
 plotly
 pandas
 yfinance
-TA-Lib==0.4.24
+TA-Lib
 numpy
 statsmodels
 pmdarima
