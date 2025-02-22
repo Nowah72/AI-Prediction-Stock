@@ -21,4 +21,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy project files
 COPY . .
 
-CMD ["python", "app.py"]  # Replace with your main script
+CMD ["python", "tradebot.py"]  # Replace with your main script
